@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <script src="bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="show"></div>
+   
+</body>
+</html>
+
+
+<script>
+    
+    //     // Import the functions you need from the SDKs you need
+    // import { initializeApp } from "firebase/app";
+    // // TODO: Add SDKs for Firebase products that you want to use
+    // // https://firebase.google.com/docs/web/setup#available-libraries
+    
+    // // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyByMy0jBGgZ0r5-R08MQF9Tn9VpO38irgw",
+      authDomain: "first-project-740e8.firebaseapp.com",
+      projectId: "first-project-740e8",
+      storageBucket: "first-project-740e8.appspot.com",
+      messagingSenderId: "850687950602",
+      appId: "1:850687950602:web:d7744577ffc6cc4ad6c4f3"
+    };
+    
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+
+<script>
+    db.collection("blogs").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+        document.getElementById("show").innerHTML+=` <h1>${doc.data().title}</h1>
+        <p>${doc.data().text}</p><p>${doc.data().time}</p>`
+    });
+});
+</script>

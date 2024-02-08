@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Design by foolishdeveloper.com -->
+  <title>new firebase</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <!--Stylesheet-->
+  <style media="screen">
+    *,
+    *:before,
+    *:after {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #080710;
+    }
+
+    .background {
+      width: 430px;
+      height: 520px;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+    }
+
+    .shape1 {
+      height: 200px;
+      width: 200px;
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(#1845ad,
+          #23a2f6);
+      left: -80px;
+      top: -80px;
+      z-index: -2;
+    }
+
+    .shape2 {
+      height: 200px;
+      width: 200px;
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(to right,
+          #ff512f,
+          #e2a44e);
+      right: -30px;
+      bottom: -80px;
+      z-index: -10;
+    }
+
+    form {
+      margin-top: 200px;
+      margin-bottom: 50px;
+      height: fit-content;
+      width: 400px;
+      background-color: rgba(255, 255, 255, 0.13);
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+      padding: 50px 35px;
+    }
+
+    form * {
+      font-family: 'Poppins', sans-serif;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      outline: none;
+      border: none;
+    }
+
+    form h3 {
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 42px;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 30px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    input {
+      display: block;
+      height: 50px;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.07);
+      border-radius: 3px;
+      padding: 0 10px;
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    ::placeholder {
+      color: #e5e5e5;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      background-color: #ffffff;
+      color: #080710;
+      padding: 15px 0;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .social {
+      margin-top: 30px;
+      display: flex;
+    }
+
+    .social button {
+      background: red;
+      width: 150px;
+      border-radius: 3px;
+      padding: 5px 10px 10px 5px;
+      background-color: rgba(255, 255, 255, 0.27);
+      color: #eaf0fb;
+      text-align: center;
+    }
+
+    .social button:hover {
+      background-color: rgba(255, 255, 255, 0.47);
+    }
+
+    .social .fb {
+      margin-left: 25px;
+    }
+
+    .social i {
+      margin-right: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background">
+
+
+  </div>
+  <form>
+    <div class="shape1"></div>
+    <div class="shape2"></div>
+    <h3>Sign Up Here</h3>
+
+    <label for="username">Username</label>
+    <input type="text" placeholder="Username" id="username">
+    <label for="username">First name</label>
+    <input type="text" placeholder="First name" id="firstname">
+    <label for="username">Last name</label>
+    <input type="text" placeholder="Last name" id="lastname">
+    <label for="password">Password</label>
+    <input type="password" placeholder="Password" id="password">
+    <label for="password">Confirm password</label>
+    <input type="password" placeholder="Confirm password" id="Confirmpassword">
+    <label for="password">Phone number</label>
+    <input type="number" placeholder="Phone number" id="phonenumber">
+    <label for="password">Email</label>
+    <input type="email" placeholder="Email" id="email">
+
+    <button onclick="signin(event)">Sign in</button>
+    <div class="social">
+      <button class="go" onclick="googlelogin(event)"><i class="fab fa-google"></i> Google</button>
+      <button class="fb"><i class="fab fa-facebook"></i> Facebook</button>
+    </div>
+  </form>
+</body>
+
+</html>
+
+
+<script>
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCdAui1xM-cuL1hth2_asg6tn01grdBzDY",
+    authDomain: "new-fire-5e27a.firebaseapp.com",
+    projectId: "new-fire-5e27a",
+    storageBucket: "new-fire-5e27a.appspot.com",
+    messagingSenderId: "531478123421",
+    appId: "1:531478123421:web:75996ecb771649251a5574"
+  };
+
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  var provider = new firebase.auth.GoogleAuthProvider();
+</script>
+
+<script>
+
+  let username = document.getElementById("username")
+  let firstname = document.getElementById("firstname")
+  let lastname = document.getElementById("lastname")
+  let password = document.getElementById("password")
+  let Confirmpassword = document.getElementById("Confirmpassword")
+  let phonenumber = document.getElementById("phonenumber")
+
+  //   function googlelogin(ev) {
+  //     ev.preventDefault()
+  // console.log(username.value);
+  // console.log(firstname.value);
+  // console.log(lastname.value);
+  // console.log(password.value);
+  // console.log(Confirmpassword.value);
+  // console.log(phonenumber.value);
+  //   }
+
+  function googlelogin(ev) {
+    ev.preventDefault()
+
+    firebase.auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        /** @type {firebase.auth.OAuthCredential} */
+        var credential = result.credential;
+
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // IdP data available in result.additionalUserInfo.profile.
+        // ...
+        window.location.href="login.html"
+      }).catch((error) => {
+        alert(error)
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+
+  }
+
+function signin(ev) {
+  ev.preventDefault()
+  firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
+  .then((userCredential) => {
+    // Signed in 
+    var user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    alert(error)
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ..
+  });
+}
+
+</script>
